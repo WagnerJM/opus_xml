@@ -8,6 +8,7 @@ from flask_migrate import Migrate
 from flask_cors import CORS
 
 from app.config import app_config
+from app.security import TokenBlacklist
 
 
 def create_app():
@@ -77,22 +78,11 @@ def create_app():
         'error': 'token_revoked'
     	}), 401
 	
-	@app.route("/plot/<string:filename>")
-	def getPlot(filename):
-
-		return send_file("static/plots/{}.png".format(filename))
 	
-	@app.route("/placeholder")
-	def placeholder():
-		return send_file("static/plots/placeholder.png")
 		
 
 	## import area für resource
-	from app.api.qrk.resources import QrkApi, QrkListApi, MesswertApi, MesswertListApi
-	api.add_resource(QrkListApi, "/api/v1/qrk")
-	api.add_resource(QrkApi, "/api/v1/qrk/<string:qrk_id>")
-	api.add_resource(MesswertListApi, "/api/v1/qrk/<string:qrk_id>/messwert")
-	api.add_resource(MesswertApi, "/api/v1/qrk/<string:qrk_id>/messwert/<string:messwert_id>" )
+	
 	
 	
 
