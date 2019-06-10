@@ -82,8 +82,13 @@ def create_app():
 		
 
 	## import area für resource
+	from app.api.user.resources import UserLoginApi, UserLogoutApi, UserRegisterApi, UserApi
+	api.add_resource(UserLoginApi, "/api/v1/login")
+	api.add_resource(UserLogoutApi, "/api/v1/logout")
+	api.add_resource(UserApi, "/api/v1/user")
+
 	
-	
+	api.add_resource(UserRegisterApi, "/api/v1/admin/register")
 	
 
 	db.init_app(app)
