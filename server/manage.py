@@ -4,6 +4,7 @@ from app import create_app
 from app.database import db
 
 from app.api.user.models import User
+from app.api.stammdaten.models import SentosaSetting
 
 
 app = create_app()
@@ -30,6 +31,10 @@ def create_admin_user():
             print("Admin user created")
         else:
             print("Admin user already exists")
+
+@cli.command("create_sentosa_setting")
+def create_sentosa_setting():
+    pass
 
 
 if __name__ == '__main__':
