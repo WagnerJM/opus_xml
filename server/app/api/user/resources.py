@@ -67,5 +67,13 @@ class UserLogoutApi(Resource):
 
 
 class UserApi(Resource):
+    @jwt_required
     def get(self):
-        pass
+        user = User.find_by_id(get_jwt_identity())
+        schema = UserSchema()
+
+        response = {
+            "status": "OK",
+            "user": schema.dump(user).data
+        }
+        return response, 200
